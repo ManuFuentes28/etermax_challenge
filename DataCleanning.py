@@ -53,7 +53,7 @@ top_games['installs'] = top_games['installs'].apply(installs)
 
 ####### DATATYPES #######
 # reemplazar valores
-# {Diccionario}
+# {Diccionario}, [Lista]
 top_games['paid'] = top_games['paid'].replace({True:1, False:0})
 
 ####### DATE FORMAT #######
@@ -64,3 +64,34 @@ top_games.to_csv("android_games_limpio.csv")
 
 #Expresiones Regulares
 #Librerias fuzzywuzzy y recordlinkage
+
+####### FILTER WITH CONDITIONS #######
+# &=and, |=or
+df[df["favorites"] > 400]
+df[df["favorites"] > 400 & df["mentions"] > 20]
+
+####### FILTER WITH TEXT #######
+df[df["full_text"].str.contains("Programmin")]
+
+####### TRANSFORMATION WITH FUNCTION #######
+import random
+def CalcularGanancias(retweets):
+    ganacia = retweets * random.randint(3, 5)
+    return ganancia
+
+df["ganancias"] = df["retweets"].apply(calcularGanancias)
+
+def popularidad(fila):
+    resultado = fila["followees"]/fila["followers"]
+    return resultado
+df["popularidad"] = df.apply(popularidad, axis=1)
+
+####### AGRUPAR DATOS #######
+df.groupby("country").mean()
+
+#agg aplicar diferentes funciones de agregacion
+df.groupby("country").agg({
+    "followers": 'sum',
+    "mentions": 'mean',
+    "retweets": 'max'
+})
