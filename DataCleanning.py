@@ -1,11 +1,32 @@
 """==================
     NULL HANDLING
 ====================="""
+# show False if its not null and True if its null
+df.isnull()
+
 # muestra los datos nulos de cada columna
 df.isna().sum()
 
+# ver todo el dataframe y no solo la Serie
+df[df.City.isnull()]
+
 # trae toda la fila del dato nulo
 df[df.isna().any(1)]
+
+# dropea el registro que tenga nulo
+df.dropna(how='any')
+
+# dropea el registro que tenga toda la fila nula
+df.dropna(how='all')
+
+# dropea el registro si City o Shape Reported es nulo
+df.dropna(subset=['City', 'Shape Reported'], how='any')
+
+# dropea el registro si City y Shape Reported es nulo
+df.dropna(subset=['City', 'Shape Reported'], how='any')
+
+# rellenar valores nulos
+df['Shape Reported'].value_contents(dropna=False)
 
 # reemplaza valores null de average_rating por 4
 values = {"average_rating" : 4}
@@ -238,6 +259,21 @@ df.groupby('continent')['beer_servings'].mean()
 
 # agg allows you to specify multiple aggregations functions at once
 df.groupby('continent')['beer_servings'].agg(['count', 'min', 'max', 'mean'])
+
+"""==================
+    EXPLORE A SERIES
+====================="""
+# get the count, unique, top and freq of a column
+movies.genre.describe()
+
+# get a count of each value and how often it appears
+movies.genre.value_counts()
+
+# get the percentaje
+movies.genre.value_counts(normalize=True)
+
+# unique values
+movies.genre.unique()
 
 
 """==================
