@@ -24,6 +24,6 @@
         "type": "string",
         "unique": "True",
         "db_name": "email",
-        "regex": "@"
+        "regex": "([a-zA-Z0-9\\_\\-\\.]+)@([a-zA-Z]+).(.+)"
     }
 }

@@ -1,0 +1,9 @@
+INFO - 2022-01-16 19:29:29,938 - La cantidad de filas del dataframe es: 1007
+INFO - 2022-01-16 19:29:29,941 - Eliminacion de duplicados
+INFO - 2022-01-16 19:29:29,941 - La cantidad de filas del dataframe es: 1007
+INFO - 2022-01-16 19:29:29,942 - Eliminacion de nan >= 2 por fila
+INFO - 2022-01-16 19:29:29,942 - La cantidad de filas del dataframe es: 993
+INFO - 2022-01-16 19:29:29,949 - La cantidad de filas del dataframe original es: 1007
+INFO - 2022-01-16 19:29:29,949 - La cantidad de filas del dataframe despues de las validaciones: 983
+INFO - 2022-01-16 19:29:29,949 - La cantidad de filas eliminadas: 24
+INFO - 2022-01-16 19:29:29,949 - La calidad del dataframe es del: 97.61668321747766%
