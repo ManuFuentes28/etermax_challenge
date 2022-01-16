@@ -1,0 +1,29 @@
+{
+    "column_list": ["id", "first_name", "last_name", "account_number", "email"], 
+    "id": {
+        "type": "int",
+        "unique": "True",
+        "db_name": "id",
+        "not_null": "True"
+    },
+    "first_name": {
+        "type": "string",
+        "db_name": "first_name"
+    },
+    "last_name": {
+        "type": "string",
+        "db_name": "last_name"
+    },
+    "account_number": {
+        "type": "int",
+        "unique": "True",
+        "db_name": "account_number",
+        "not_null": "True"
+    },
+    "email": {
+        "type": "string",
+        "unique": "True",
+        "db_name": "email",
+        "regex": "@"
+    }
+}
