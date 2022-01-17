@@ -2,3 +2,4 @@
 Python/ipynb_checkpoints
 Python/__pycache__/
 poetry.lock
+Python/*.log
