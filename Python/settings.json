@@ -8,11 +8,13 @@
     },
     "first_name": {
         "type": "string",
-        "db_name": "first_name"
+        "db_name": "first_name",
+        "regex": "[a-zA-Z]"
     },
     "last_name": {
         "type": "string",
-        "db_name": "last_name"
+        "db_name": "last_name",
+        "regex": "[a-zA-Z]"
     },
     "account_number": {
         "type": "int",
@@ -24,6 +26,6 @@
         "type": "string",
         "unique": "True",
         "db_name": "email",
-        "regex": "@"
+        "regex": "^[a-zA-Z0-9_.+-]+[@]"
     }
 }
