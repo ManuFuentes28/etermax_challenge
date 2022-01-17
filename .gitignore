@@ -1,4 +1,4 @@
-/ipynb_checkpoints
+.ipynb_checkpoints
 Python/ipynb_checkpoints
 Python/__pycache__/
 poetry.lock
