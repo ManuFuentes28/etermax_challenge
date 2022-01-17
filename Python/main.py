@@ -58,7 +58,7 @@ def write_csv_pandas(dataframe: DataFrame, sep: str=',', encoding: str='uft-8') 
 if __name__ == "__main__":
     df = read_csv_pandas(FILE, SEP_IN, ENCODING_IN)
     count_row = df.shape[0]
-    count_columns = df_shape[1]
+    count_columns = df.shape[1]
     count_nan = int((40*count_columns)/100) # porcentaje de para nulos 
     logging.info(f"La cantidad de filas del dataframe es: {count_row}")
     settings = json_settings(SETTINGS)
@@ -76,27 +76,27 @@ if __name__ == "__main__":
     logging.info(f"La cantidad de filas del dataframe es: {df.shape[0]}")
 
     for columna in columns:
-        objetc_column = Columna(settings[columna])
+        object_column = Columna(settings[columna])
         
         # Validacion de unicos
-        if objetc_column.unique:
+        if object_column.unique:
             df.drop_duplicates(subset=[columna], inplace=True)
             logging.info(f"La cantidad de filas del dataframe despues de las validaciones es: {df.shape[0]}")
         
         # Validacion de tipo de dato
-        if objetc_column.type == 'int':
+        if object_column.type == 'int':
             # Valida enteros, vacíos y nulos
             df = df[~pd.to_numeric(df[columna], errors='coerce').isnull()]
         else: # String
             # Validación de null
-            if objetc_column.not_null:
+            if object_column.not_null:
                 df.dropna(subset=[columna], inplace=True)
                 logging.info(f"La cantidad de filas del dataframe despues de las validaciones es: {df.shape[0]}")
                 
             # Validacion de regex
-            if objetc_column.regex:
+            if object_column.regex:
                 df[columna] = df[columna].str.strip() # Elimina espacios
-                df = df[df[columna].str.match(objetc_column.regex)==True]
+                df = df[df[columna].str.match(object_column.regex)==True]
     
     # Validar porcentaje de dataframe valido
     logging.info(f"La cantidad de filas del dataframe original es: {count_row}")
