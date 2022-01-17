@@ -72,7 +72,7 @@ if __name__ == "__main__":
     
     # Porcentaje de null por fila
     df = df[df.isnull().sum(axis=1)<count_nan]
-    logging.info(f"Eliminacion de NaN >= {count_nan} por fila")
+    logging.info(f"------- Eliminacion de NaN >= {count_nan} por fila -------")
     logging.info(f"La cantidad de filas del dataframe es: {df.shape[0]}")
 
     for columna in columns:
@@ -81,11 +81,13 @@ if __name__ == "__main__":
         # Validacion de unicos
         if object_column.unique:
             df.drop_duplicates(subset=[columna], inplace=True)
+            logging.info("------- Validación de únicos -------")
             logging.info(f"La cantidad de filas del dataframe despues de las validaciones es: {df.shape[0]}")
         
         # Validacion de tipo de dato
         if object_column.type == 'int':
             # Valida enteros, vacíos y nulos
+            logging.info("------- Validate int, null and empty -------")
             df = df[~pd.to_numeric(df[columna], errors='coerce').isnull()]
         else: # String
             # Validación de null
@@ -97,9 +99,13 @@ if __name__ == "__main__":
             if object_column.regex:
                 df[columna] = df[columna].str.strip() # Elimina espacios
                 df = df[df[columna].str.match(object_column.regex)==True]
+                logging.info("------- Validate regex -------")
+                logging.info(f"La cantidad de filas del dataframe despues de las validaciones es: {df.shape[0]}")
     
     # Validar porcentaje de dataframe valido
+    logging.info("------- Summary -------")
     logging.info(f"La cantidad de filas del dataframe original es: {count_row}")
     logging.info(f"La cantidad de filas del dataframe despues de las validaciones es: {df.shape[0]}")
     logging.info(f"Cantidad de filas eliminadas: {count_row - df.shape[0]}")
     logging.info(f"La calidad del dataframe es del: {(df.shape[0]/count_row)*100}%")
+    logging.info("---------------------------------------------------------------------------")
